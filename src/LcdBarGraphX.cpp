@@ -43,25 +43,36 @@ byte LcdBarGraphX::_level0[8] = {
 };
 // -- character with one bar
 byte LcdBarGraphX::_level1[8] = {
+    B10101,
     B10000,
     B10000,
     B10000,
     B10000,
     B10000,
     B10000,
-    B10000,
-    B10000
+    B10101
 };
 // -- character with two bars
 byte LcdBarGraphX::_level2[8] = {
+    B10101,
     B10100,
     B10100,
     B10100,
     B10100,
     B10100,
     B10100,
-    B10100,
-    B10100
+    B10101
+};
+// -- character with line
+byte LcdBarGraphX::_level3[8] = {
+    B10101,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B10101
 };
 // -- constructor
 LcdBarGraphX::LcdBarGraphX(LCD* lcd, byte numCols, byte startX, byte startY)
@@ -79,6 +90,7 @@ void LcdBarGraphX::begin()
     _lcd->createChar(0, this->_level0);
     _lcd->createChar(1, this->_level1);
     _lcd->createChar(2, this->_level2);
+    _lcd->createChar(3, this->_level3);
     // -- setting initial values
     this->_prevValue = 0; // -- cached value
     this->_lastFullChars = 0; // -- cached value
@@ -113,8 +125,8 @@ void LcdBarGraphX::drawValue(int value, int maxValue) {
         }
         
         // -- clear characters left over the previous draw
-        for(byte i=fullChars;i<this->_lastFullChars;i++) {
-            _lcd->write(' ');
+        for(byte i=fullChars;i<this->_numCols;i++) {
+            _lcd->write((byte)3);
         }
         
         // -- save cache

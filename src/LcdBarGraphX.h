@@ -71,6 +71,7 @@ private:
     static byte _level0[8];
     static byte _level1[8];
     static byte _level2[8];
+    static byte _level3[8];
 };
 
 #endif
