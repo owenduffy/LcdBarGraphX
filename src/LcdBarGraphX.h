@@ -33,7 +33,9 @@
 
 #include "Arduino.h"
 
-#define USE_BUILDIN_FILLED_CHAR  0xFF // -- Char 0xFF is usualy a filled character. Uncomment if you want the library to create the filled char at the expense of 26 bytes.
+//The following depends on ROM A00, it is a bad implementation that cannot be fixed from app source.
+//#define USE_BUILDIN_FILLED_CHAR  0xFF // -- Char 0xFF is usualy a filled character. Uncomment if you want the library to create the filled char at the expense of 26 bytes.
+#define SMOOTH_BAR
 
 class LcdBarGraphX
 {
@@ -64,15 +66,11 @@ private:
     byte _startY;
     int _prevValue;
     byte _lastFullChars;
-	boolean _initialized = false;
+  	boolean _initialized;
 
-#ifndef USE_BUILDIN_FILLED_CHAR
     static byte _level0[8];
-#endif
     static byte _level1[8];
     static byte _level2[8];
-    static byte _level3[8];
-    static byte _level4[8];
 };
 
 #endif
