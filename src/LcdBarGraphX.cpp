@@ -93,7 +93,7 @@ void LcdBarGraphX::begin()
     _lcd->createChar(3, this->_level3);
     // -- setting initial values
     this->_prevValue = 0; // -- cached value
-    this->_lastFullChars = 0; // -- cached value
+//    this->_lastFullChars = 0; // -- cached value
   	this->_initialized = true;
 }
 
@@ -130,7 +130,7 @@ void LcdBarGraphX::drawValue(int value, int maxValue) {
         }
         
         // -- save cache
-        this->_lastFullChars = fullChars;
+//        this->_lastFullChars = fullChars;
         this->_prevValue = normalizedValue;
     }
     /*

@@ -65,7 +65,7 @@ private:
     byte _startX;
     byte _startY;
     int _prevValue;
-    byte _lastFullChars;
+//    byte _lastFullChars;
   	boolean _initialized;
 
     static byte _level0[8];
