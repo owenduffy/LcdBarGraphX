@@ -92,7 +92,7 @@ void LcdBarGraphX::begin()
     _lcd->createChar(2, this->_level2);
     _lcd->createChar(3, this->_level3);
     // -- setting initial values
-    this->_prevValue = 0; // -- cached value
+    this->_prevValue = -1; // -- cached value
 //    this->_lastFullChars = 0; // -- cached value
   	this->_initialized = true;
 }
@@ -102,6 +102,9 @@ void LcdBarGraphX::drawValue(int value, int maxValue) {
 	if(!this->_initialized) {
 		this->begin();
 	}
+    //limit input
+    if(value<0) {value=0;}
+    if(value>maxValue) {value=maxValue;}
     // -- calculate full (filled) character count
     byte fullChars = (long)value * _numCols / maxValue;
     // -- calculate partial character bar count
